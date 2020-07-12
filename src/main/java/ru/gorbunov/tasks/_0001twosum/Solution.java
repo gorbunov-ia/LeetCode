@@ -1,4 +1,4 @@
-package ru.gorbunov.tasks._001twosum;
+package ru.gorbunov.tasks._0001twosum;
 
 import java.util.*;
 
