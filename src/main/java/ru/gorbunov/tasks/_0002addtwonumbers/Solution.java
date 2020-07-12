@@ -59,7 +59,7 @@ public class Solution {
     }
 
     private static ListNode createListNodes(int... values) {
-        if (values == null && values.length == 0) {
+        if (values == null || values.length == 0) {
             throw new IllegalArgumentException();
         }
         ListNode head = new ListNode(values[0]);
