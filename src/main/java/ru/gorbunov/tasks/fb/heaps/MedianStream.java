@@ -1,5 +1,12 @@
 package ru.gorbunov.tasks.fb.heaps;
 
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
  * Median Stream
  * <p>
@@ -32,6 +39,12 @@ package ru.gorbunov.tasks.fb.heaps;
  */
 public class MedianStream {
 
+    public static void main(String[] args) {
+        int[] arr = new int[]{5, 15, 1, 3};
+        System.out.println(Arrays.toString(new MedianStream().findMedian(arr)));
+        System.out.println(Arrays.toString(new MedianStream().fastFindMedian(arr)));
+    }
+
     // Add any helper functions you may need here
     private void fixSort(int[] arr, int last) {
         //like babble sort
@@ -61,4 +74,32 @@ public class MedianStream {
 
         return result;
     }
+
+    int[] fastFindMedian(int[] arr) {
+        // Write your code here
+        int[] result = new int[arr.length];
+
+        final Queue<Integer> lo = new PriorityQueue<>(Comparator.reverseOrder());
+        final Queue<Integer> hi = new PriorityQueue<>(Comparator.naturalOrder());
+
+        for (int i = 0; i < arr.length; i++) {
+
+            // addNum
+            lo.add(arr[i]);                                  // Add to max heap
+
+            hi.add(lo.peek());                               // balancing step
+            lo.poll();
+
+            if (lo.size() < hi.size()) {                     // maintain size property
+                lo.add(hi.peek());
+                hi.poll();
+            }
+
+            // findMedian
+            result[i] = lo.size() > hi.size() ? lo.peek() : (lo.peek() + hi.peek()) / 2;
+        }
+
+        return result;
+    }
+
 }
