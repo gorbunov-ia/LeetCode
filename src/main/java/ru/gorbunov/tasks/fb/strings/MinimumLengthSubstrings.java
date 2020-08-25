@@ -22,6 +22,8 @@ import java.util.Map;
  * Explanation:
  * Substring "dcbef" can be rearranged to "cfdeb", "cefdb", and so on. String t is a substring of "cfdeb". Thus, the
  * minimum length required is 5.
+ *
+ * @see ru.gorbunov.tasks._0076minimumwindowsubstring.Solution#minWindow
  */
 public class MinimumLengthSubstrings {
 
@@ -36,44 +38,48 @@ public class MinimumLengthSubstrings {
 
     int minLengthSubstring(String s, String t) {
         // Write your code here
-        Map<Character, Integer> sMap = createMap(s);
         Map<Character, Integer> tMap = createMap(t);
+        Map<Character, Integer> currentWindow = new HashMap<>();
 
-        // does S have all letters from T?
-        for (Map.Entry<Character, Integer> entry : tMap.entrySet()) {
-            Integer numberOfLettersInS = sMap.get(entry.getKey());
-            if (numberOfLettersInS == null || numberOfLettersInS < entry.getValue()) {
-                return -1;
+        // size, left index, right index
+        int[] ans = {-1, 0, 0};
+        int required = tMap.size();
+        int currentLetters = 0;
+        int left = 0;
+        int right = 0;
+
+        while (right < s.length()) {
+
+            char ch = s.charAt(right);
+            Integer chNumber = currentWindow.getOrDefault(ch, 0);
+            currentWindow.put(ch, chNumber + 1);
+
+            if (tMap.containsKey(ch) && tMap.get(ch).equals(currentWindow.get(ch))) {
+                currentLetters++;
             }
-        }
 
-        // detect min length of substring
-        int start = 0;
-        int end = s.length() - 1;
-        for (; start < s.length(); start++) {
-            Integer tNumber = tMap.get(s.charAt(start));
-            if (tNumber != null) {
-                Integer sNumber = sMap.get(s.charAt(start));
-                if (sNumber > tNumber) {
-                    sMap.put(s.charAt(start), sNumber - 1);
-                } else {
-                    break;
+            while (left <= right && required == currentLetters) {
+
+                if (ans[0] == -1 || right - left + 1 < ans[0]) {
+                    ans[0] = right - left + 1;
+                    ans[1] = left;
+                    ans[2] = right;
                 }
-            }
-        }
 
-        for (; end > start; end--) {
-            Integer tNumber = tMap.get(s.charAt(end));
-            if (tNumber != null) {
-                Integer sNumber = sMap.get(s.charAt(end));
-                if (sNumber > tNumber) {
-                    sMap.put(s.charAt(end), sNumber - 1);
-                } else {
-                    break;
+                char lch = s.charAt(left);
+                Integer lNumber = currentWindow.get(lch);
+                currentWindow.put(lch, lNumber - 1);
+
+                if (tMap.containsKey(lch) && tMap.get(lch) > currentWindow.get(lch)) {
+                    currentLetters--;
                 }
+
+                left++;
             }
+
+            right++;
         }
 
-        return end - start + 1;
+        return ans[0] == -1 ? -1 : ans[2] - ans[1] + 1;
     }
 }
