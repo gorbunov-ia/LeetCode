@@ -27,6 +27,8 @@ package ru.gorbunov.tasks.fb.recursion;
  * targetMoney = 75
  * output = true
  * You can make 75 units with the denominations [17, 29, 29].
+ *
+ * @see ru.gorbunov.tasks._0322coinchange.Solution#coinChange(int[], int)
  */
 public class ChangeInAForeignCurrency {
 
