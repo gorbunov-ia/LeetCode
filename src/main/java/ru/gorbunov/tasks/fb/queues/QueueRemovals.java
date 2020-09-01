@@ -51,41 +51,47 @@ import java.util.Queue;
  */
 public class QueueRemovals {
 
+    private static class Pair {
+        int value;
+        int originalIndex;
+
+        private Pair(int value, int originalIndex) {
+            this.value = value;
+            this.originalIndex = originalIndex;
+        }
+    }
+
     int[] findPositions(int[] arr, int x) {
         // Write your code here
-        Queue<Integer> values = new LinkedList<>();
-        Queue<Integer> indexes = new LinkedList<>();
+        Queue<Pair> values = new LinkedList<>();
 
         for (int i = 0; i < arr.length; i++) {
-            values.add(arr[i]);
-            indexes.add(i + 1);
+            values.add(new Pair(arr[i], i + 1));
         }
 
         int[] result = new int[x];
         for (int i = 0; i < x; i++) {
-            List<Integer> items = new ArrayList<>(x);
-            List<Integer> itemIndexes = new ArrayList<>(x);
+            List<Pair> items = new ArrayList<>(x);
             Integer maxValue = null;
             Integer index = null;
             for (int j = 0; j < x; j++) {
-                Integer value = values.peek();
-                if (value == null) {
+                Pair pair = values.peek();
+                if (pair == null) {
                     break;
                 }
-                if (maxValue == null || value > maxValue) {
-                    maxValue = value;
+                if (maxValue == null || pair.value > maxValue) {
+                    maxValue = pair.value;
                     index = j;
                 }
                 items.add(values.poll());
-                itemIndexes.add(indexes.poll());
             }
             for (int j = 0; j < items.size(); j++) {
                 if (j == index) {
-                    result[i] = itemIndexes.get(j);
+                    result[i] = items.get(j).originalIndex;
                 } else {
-                    Integer newValue = items.get(j) > 0 ? items.get(j) - 1 : items.get(j);
-                    values.add(newValue);
-                    indexes.add(itemIndexes.get(j));
+                    Pair pair = items.get(j);
+                    pair.value = pair.value > 0 ? pair.value - 1 : pair.value;
+                    values.add(pair);
                 }
             }
         }
