@@ -1,5 +1,7 @@
 package ru.gorbunov.tasks._0092reverselinkedlistII;
 
+import ru.gorbunov.tasks.structure.tree.ListNode;
+
 /**
  * Reverse Linked List II
  * <p>
@@ -10,14 +12,6 @@ package ru.gorbunov.tasks._0092reverselinkedlistII;
  * Output: 1->4->3->2->5->NULL
  */
 public class Solution {
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
     public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode dummy = new ListNode(-1, head);

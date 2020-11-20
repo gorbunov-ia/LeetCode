@@ -1,10 +1,7 @@
 package ru.gorbunov.tasks.fb.arrays;
 
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
 
 /**
  * Contiguous Subarrays
@@ -36,11 +33,6 @@ import java.util.Stack;
  */
 public class ContiguousSubarrays {
 
-    public static void main(String[] args) {
-        int[] arr = new int[]{3, 4, 1, 6, 2};
-        System.out.println(Arrays.toString(new ContiguousSubarrays().fastCountSubarrays(arr)));
-    }
-
     int[] countSubarrays(int[] arr) {
         // Write your code here
 
@@ -71,8 +63,8 @@ public class ContiguousSubarrays {
     int[] fastCountSubarrays(int[] arr) {
         Deque<Integer> stack = new LinkedList<>();
         int[] ans = new int[arr.length];
-        for(int i = 0; i < arr.length; i++) {
-            while(!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
+        for (int i = 0; i < arr.length; i++) {
+            while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
                 ans[i] += ans[stack.pop()];
             }
             stack.push(i);
@@ -80,8 +72,8 @@ public class ContiguousSubarrays {
         }
         stack.clear();
         int[] temp = new int[arr.length];
-        for(int i = arr.length - 1; i >= 0; i--) {
-            while(!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && arr[stack.peek()] < arr[i]) {
                 int idx = stack.pop();
                 ans[i] += temp[idx];
                 temp[i] += temp[idx];

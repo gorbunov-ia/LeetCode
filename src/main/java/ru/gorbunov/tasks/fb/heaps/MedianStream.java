@@ -1,8 +1,5 @@
 package ru.gorbunov.tasks.fb.heaps;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -36,14 +33,10 @@ import java.util.Queue;
  * arr = [1, 2]
  * output = [1, 1]
  * The median of [1] is 1, the median of [1, 2] is (1 + 2) / 2 = 1.5 (which should be rounded down to 1).
+ *
+ * @see ru.gorbunov.tasks._0295findmedianfromdatastream.MedianFinder()
  */
 public class MedianStream {
-
-    public static void main(String[] args) {
-        int[] arr = new int[]{5, 15, 1, 3};
-        System.out.println(Arrays.toString(new MedianStream().findMedian(arr)));
-        System.out.println(Arrays.toString(new MedianStream().fastFindMedian(arr)));
-    }
 
     // Add any helper functions you may need here
     private void fixSort(int[] arr, int last) {

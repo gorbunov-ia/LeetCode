@@ -40,12 +40,10 @@ public class MedianFinder {
     public void addNum(int num) {
         lo.add(num);                                    // Add to max heap
 
-        hi.add(lo.peek());                               // balancing step
-        lo.poll();
+        hi.add(lo.poll());                               // balancing step
 
         if (lo.size() < hi.size()) {                     // maintain size property
-            lo.add(hi.peek());
-            hi.poll();
+            lo.add(hi.poll());
         }
     }
 

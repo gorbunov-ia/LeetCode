@@ -1,7 +1,5 @@
 package ru.gorbunov.tasks._0001twosum;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,15 +15,6 @@ import java.util.Map;
  * return [0, 1].
  */
 public class Solution {
-    public static void main(String[] args) {
-
-        int[] nums = {2, 7, 11, 15};
-        int target = 9;
-
-        //int[] result = new Solution().twoSum(nums,target);
-        int[] result = new Solution().fastTwoSum(nums, target);
-        System.out.println("result: " + Arrays.toString(result));
-    }
 
     public int[] twoSum(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {

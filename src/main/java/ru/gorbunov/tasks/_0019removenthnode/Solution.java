@@ -1,5 +1,8 @@
 package ru.gorbunov.tasks._0019removenthnode;
 
+
+import ru.gorbunov.tasks.structure.list.ListNode;
+
 /**
  * Remove Nth Node From End of List
  * <p>
@@ -65,23 +68,6 @@ public class Solution {
         }
         second.next = second.next.next;
         return dummy.next;
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 }
 

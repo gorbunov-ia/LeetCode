@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * Slow Sums
+ * <p>
  * Suppose we have a list of N numbers, and repeat the following operation until we're left with only a single number:
  * Choose any two numbers and replace them with their sum. Moreover, we associate a penalty with each operation equal to
  * the value of the new number, and call the penalty for the entire list as the sum of the penalties of each operation.
@@ -28,15 +29,6 @@ import java.util.Arrays;
  * Add 9 + 1 for a penalty of 10. The penalties sum to 26.
  */
 public class SlowSums {
-
-    public static void main(String[] args) {
-        System.out.println(new SlowSums().getTotalTime(new int[]{4, 2, 1, 3}));
-        System.out.println(new SlowSums().getTotalTime(new int[]{2, 3, 9, 8, 4}));
-        System.out.println(new SlowSums().getTotalTime(new int[]{2, 100, 100, 1, 99}));
-        System.out.println(new SlowSums().getTotalTime(new int[]{7, 8, 1, 6, 7, 7}));
-        System.out.println(new SlowSums().getTotalTime(new int[]{7, 8, 1, 7, 8, 7}));
-    }
-
 
     int getTotalTime(int[] arr) {
         // Write your code here

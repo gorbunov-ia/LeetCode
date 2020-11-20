@@ -3,8 +3,7 @@ package ru.gorbunov.tasks._0092reverselinkedlistII;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static ru.gorbunov.tasks._0092reverselinkedlistII.Solution.ListNode;
+import ru.gorbunov.tasks.structure.tree.ListNode;
 
 class SolutionTest {
 

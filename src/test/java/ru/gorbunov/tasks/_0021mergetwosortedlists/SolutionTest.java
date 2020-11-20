@@ -3,8 +3,8 @@ package ru.gorbunov.tasks._0021mergetwosortedlists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.gorbunov.tasks.structure.list.ListNode;
 
-import static ru.gorbunov.tasks._0021mergetwosortedlists.Solution.ListNode;
 
 class SolutionTest {
 

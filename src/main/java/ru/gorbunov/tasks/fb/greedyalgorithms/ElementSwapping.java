@@ -1,9 +1,8 @@
 package ru.gorbunov.tasks.fb.greedyalgorithms;
 
-import java.util.Arrays;
-
 /**
  * Element Swapping
+ * <p>
  * Given a sequence of n integers arr, determine the lexicographically smallest sequence which may be obtained from it
  * after performing at most k element swaps, each involving a pair of consecutive elements in the sequence.
  * Note: A list x is lexicographically smaller than a different equal-length list y if and only if, for the earliest
@@ -31,12 +30,6 @@ import java.util.Arrays;
  * We can swap [11, 2], followed by [9, 2], then [8, 2].
  */
 public class ElementSwapping {
-
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(new ElementSwapping().findMinArray(new int[]{5, 3, 1}, 2)));
-        System.out.println(Arrays.toString(new ElementSwapping().findMinArray(new int[]{8, 9, 11, 2, 1}, 3)));
-        System.out.println(Arrays.toString(new ElementSwapping().findMinArray(new int[]{3, 1, 4, 2}, 2)));
-    }
 
     int[] findMinArray(int[] arr, int k) {
         // Write your code here

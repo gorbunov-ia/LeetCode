@@ -1,5 +1,7 @@
 package ru.gorbunov.tasks._0206reverselinkedlist;
 
+import ru.gorbunov.tasks.structure.tree.ListNode;
+
 /**
  * Reverse Linked List
  * <p>
@@ -11,14 +13,6 @@ package ru.gorbunov.tasks._0206reverselinkedlist;
  * A linked list can be reversed either iteratively or recursively. Could you implement both?
  */
 public class Solution {
-
-    public static class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
     public ListNode reverseList(ListNode head) {
 

@@ -31,4 +31,17 @@ public class Solution {
             }
         }
     }
+
+    public void fastMoveZeroes(int[] nums) {
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                if (i != j) { //optimization. Array without zeros [1, 1, 1]
+                    nums[j] = nums[i];
+                    nums[i] = 0;
+                }
+                j++;
+            }
+        }
+    }
 }

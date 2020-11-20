@@ -22,7 +22,7 @@ public class Solution {
         }
 
         // Dictionary which keeps a count of all the unique characters in t.
-        Map<Character, Integer> dictT =createMap(t);
+        Map<Character, Integer> dictT = createMap(t);
 
         // Number of unique characters in t, which need to be present in the desired window.
         int required = dictT.size();

@@ -1,8 +1,8 @@
 package ru.gorbunov.tasks.fb.sorting;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
  */
 public class CountingTriangles {
 
-    class Sides {
+    static class Sides {
         int a;
         int b;
         int c;
@@ -52,18 +52,19 @@ public class CountingTriangles {
     }
 
     // Add any helper functions you may need here
-    private Set<Integer> getSetOfSides(Sides sides) {
-        Set<Integer> s = new HashSet<>();
+    private List<Integer> getSideValues(Sides sides) {
+        List<Integer> s = new ArrayList<>(3);
         s.add(sides.a);
         s.add(sides.b);
         s.add(sides.c);
+        Collections.sort(s);
         return s;
     }
 
-    int countDistinctTriangles(ArrayList<Sides> arr) {
+    int countDistinctTriangles(List<Sides> arr) {
         // Write your code here
         return arr.stream()
-                .map(this::getSetOfSides)
+                .map(this::getSideValues)
                 .collect(Collectors.toSet())
                 .size();
     }

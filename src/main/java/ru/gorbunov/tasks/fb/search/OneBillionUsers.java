@@ -27,12 +27,6 @@ package ru.gorbunov.tasks.fb.search;
  */
 public class OneBillionUsers {
 
-    public static void main(String[] args) {
-        System.out.println(new OneBillionUsers().fastGetBillionUsersDay(new float[]{1.5f}));
-        System.out.println(new OneBillionUsers().fastGetBillionUsersDay(new float[]{1.1f, 1.2f, 1.3f}));
-        System.out.println(new OneBillionUsers().fastGetBillionUsersDay(new float[]{1.01f, 1.02f}));
-    }
-
     int getBillionUsersDay(float[] growthRates) {
         // Write your code here
         float[] values = new float[growthRates.length];

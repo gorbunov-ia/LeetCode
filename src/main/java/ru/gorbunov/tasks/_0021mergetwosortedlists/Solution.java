@@ -1,5 +1,7 @@
 package ru.gorbunov.tasks._0021mergetwosortedlists;
 
+import ru.gorbunov.tasks.structure.list.ListNode;
+
 /**
  * Merge Two Sorted Lists
  * <p>
@@ -47,23 +49,4 @@ public class Solution {
         return dummy.next;
     }
 
-    /**
-     * Definition for singly-linked list.
-     */
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }

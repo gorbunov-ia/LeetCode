@@ -3,8 +3,7 @@ package ru.gorbunov.tasks._0019removenthnode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static ru.gorbunov.tasks._0019removenthnode.Solution.ListNode;
+import ru.gorbunov.tasks.structure.list.ListNode;
 
 class SolutionTest {
 

@@ -29,11 +29,6 @@ package ru.gorbunov.tasks.fb.strings;
  */
 public class RotationalCipher {
 
-    public static void main(String[] args) {
-        String input = "Zebra-493";
-        System.out.println(new RotationalCipher().rotationalCipher(input, 3));
-    }
-
     String rotationalCipher(String input, int rotationFactor) {
 
         int lettersFactor = rotationFactor % 26;
