@@ -3,7 +3,7 @@ package ru.gorbunov.tasks._0094binarytreeinordertraversal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.gorbunov.tasks._0094binarytreeinordertraversal.Solution.TreeNode;
+import ru.gorbunov.tasks.structure.tree.TreeNode;
 
 import java.util.Arrays;
 import java.util.Collections;

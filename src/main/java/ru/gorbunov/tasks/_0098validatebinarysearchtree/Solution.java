@@ -1,5 +1,7 @@
 package ru.gorbunov.tasks._0098validatebinarysearchtree;
 
+import ru.gorbunov.tasks.structure.tree.TreeNode;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -62,25 +64,5 @@ public class Solution {
             root = root.right;
         }
         return true;
-    }
-
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }

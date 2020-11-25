@@ -1,6 +1,6 @@
 package ru.gorbunov.tasks._0092reverselinkedlistII;
 
-import ru.gorbunov.tasks.structure.tree.ListNode;
+import ru.gorbunov.tasks.structure.list.ListNode;
 
 /**
  * Reverse Linked List II

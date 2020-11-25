@@ -3,7 +3,7 @@ package ru.gorbunov.tasks._0101symmetrictree;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.gorbunov.tasks._0101symmetrictree.Solution.TreeNode;
+import ru.gorbunov.tasks.structure.tree.TreeNode;
 
 class SolutionTest {
 

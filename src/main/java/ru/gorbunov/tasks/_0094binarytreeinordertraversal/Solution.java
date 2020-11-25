@@ -1,5 +1,7 @@
 package ru.gorbunov.tasks._0094binarytreeinordertraversal;
 
+import ru.gorbunov.tasks.structure.tree.TreeNode;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -62,24 +64,5 @@ public class Solution {
             curr = curr.right;
         }
         return output;
-    }
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 }

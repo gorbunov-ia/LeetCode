@@ -3,8 +3,8 @@ package ru.gorbunov.tasks._0098validatebinarysearchtree;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.gorbunov.tasks.structure.tree.TreeNode;
 
-import static ru.gorbunov.tasks._0098validatebinarysearchtree.Solution.TreeNode;
 
 class SolutionTest {
 
