@@ -54,4 +54,14 @@ class SolutionTest {
         Assertions.assertTrue(result);
     }
 
+    @Test
+    void example5() {
+        String s1 = "ab";
+        String s2 = "a";
+
+        final boolean result = solution.checkInclusion(s1, s2);
+
+        Assertions.assertFalse(result);
+    }
+
 }

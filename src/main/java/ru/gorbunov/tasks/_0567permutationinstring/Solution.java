@@ -21,13 +21,15 @@ import java.util.Map;
 public class Solution {
 
     public boolean checkInclusion(String s1, String s2) {
+        if (s1.length() > s2.length()) {
+            return false;
+        }
         Map<Character, Integer> window = buildWindow(s1);
 
         for (int i = 0; i < s1.length(); i++) {
             char c = s2.charAt(i);
             int count = window.getOrDefault(c, 0);
-            window.put(c, count - 1);
-            shrink(window, c);
+            putIfNotZero(window, c, count - 1);
         }
 
         int limit = s2.length() - s1.length();
@@ -38,16 +40,22 @@ public class Solution {
             // modify window
             char firstCh = s2.charAt(i);
             int first = window.getOrDefault(firstCh, 0);
-            window.put(firstCh, first + 1);
-            shrink(window, firstCh);
+            putIfNotZero(window, firstCh, first + 1);
 
             char lastCh = s2.charAt(i + s1.length());
             int last = window.getOrDefault(lastCh, 0);
-            window.put(lastCh, last - 1);
-            shrink(window, lastCh);
+            putIfNotZero(window, lastCh, last - 1);
         }
 
         return window.isEmpty();
+    }
+
+    private void putIfNotZero(Map<Character, Integer> window, char ch, int value) {
+        if (value != 0) {
+            window.put(ch, value);
+        } else {
+            window.remove(ch);
+        }
     }
 
     private Map<Character, Integer> buildWindow(String str) {
@@ -61,10 +69,4 @@ public class Solution {
         return map;
     }
 
-    private void shrink(Map<Character, Integer> window, char ch) {
-        Integer count = window.get(ch);
-        if (count != null && count == 0) {
-            window.remove(ch);
-        }
-    }
 }
