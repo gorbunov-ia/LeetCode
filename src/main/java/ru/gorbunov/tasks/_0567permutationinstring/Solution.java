@@ -27,6 +27,7 @@ public class Solution {
             char c = s2.charAt(i);
             int count = window.getOrDefault(c, 0);
             window.put(c, count - 1);
+            shrink(window, c);
         }
 
         int limit = s2.length() - s1.length();
