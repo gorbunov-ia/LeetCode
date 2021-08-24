@@ -32,17 +32,17 @@ import java.util.LinkedList;
 public class Solution {
 
     public boolean isValidBST(TreeNode root) {
-        return isValid(root, null, null);
+        return isValid(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    private boolean isValid(TreeNode node, Integer minLimit, Integer maxLimit) {
+    private boolean isValid(TreeNode node, int minLimit, int maxLimit) {
         if (node == null) {
             return true;
         }
-        if (node.left != null && (node.left.val >= node.val || minLimit != null && node.left.val <= minLimit ) ) {
+        if (node.left != null && (node.left.val >= node.val || node.left.val <= minLimit ) ) {
             return false;
         }
-        if (node.right != null && (node.right.val <= node.val || maxLimit != null && node.right.val >= maxLimit)) {
+        if (node.right != null && (node.right.val <= node.val || node.right.val >= maxLimit)) {
             return false;
         }
         return isValid(node.left, minLimit, node.val) && isValid(node.right, node.val, maxLimit);
