@@ -26,6 +26,12 @@ import java.util.Map;
 public class Solution {
     private Map<Integer, Integer> targets = new HashMap<>();
 
+    /*
+        Runtime complexity O(N * log(N)); worst case O(N^2)
+        Space complexity O(log(N)); worst case O(N^2)
+
+        Trick: preSum(i,j) = preSum(j) - preSum(i-1) -> preSum(j) - target sum = preSum(i-1)
+    */
     public int pathSum(TreeNode root, int targetSum) {
         if (root == null) {
             return 0;
@@ -56,4 +62,34 @@ public class Solution {
         }
         targets = newTargets;
     }
+
+    private final Map<Integer, Integer> preSum = new HashMap<>();
+
+    /*
+        Runtime complexity O(N)
+        Space complexity O(Log(N))
+
+        Trick: preSum(i,j) = preSum(j) - preSum(i-1) -> preSum(j) - target sum = preSum(i-1)
+     */
+    public int pathSumFast(TreeNode root, int sum) {
+        preSum.put(0,1);
+        return pathSum(root, 0, sum);
+    }
+
+    public int pathSum(TreeNode root, int currSum, int target) {
+        if (root == null) {
+            return 0;
+        }
+
+        currSum += root.val;
+        int res = preSum.getOrDefault(currSum - target, 0);
+        preSum.put(currSum, preSum.getOrDefault(currSum, 0) + 1);
+
+        res += pathSum(root.left, currSum, target);
+        res += pathSum(root.right, currSum, target);
+
+        preSum.put(currSum, preSum.get(currSum) - 1);
+        return res;
+    }
+
 }
