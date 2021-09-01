@@ -74,4 +74,31 @@ public class Solution {
         return groupList;
     }
 
+    public List<List<String>> easyGroupStrings(String[] strings) {
+        if (strings == null) {
+            throw new NullPointerException();
+        }
+        Map<String, List<String>> result = new HashMap<>();
+        for (String word : strings) {
+            String key = getGroupKey(word);
+            result.computeIfAbsent(key, k -> new ArrayList<>()).add(word);
+        }
+
+        return new ArrayList<>(result.values());
+    }
+
+    // bc -> ab; cd -> ab
+    private String getGroupKey(String word) {
+        if (word.length() == 0) {
+            throw new IllegalArgumentException();
+        }
+        int shift = word.charAt(0) - FIRST_LETTER;
+        StringBuilder sb = new StringBuilder(word.length());
+        for (char ch : word.toCharArray()) {
+            int newChar = ((((ch - FIRST_LETTER) - shift) + ALPHABET_SIZE) % ALPHABET_SIZE) + FIRST_LETTER;
+            sb.append(newChar);
+        }
+        return sb.toString();
+    }
+
 }

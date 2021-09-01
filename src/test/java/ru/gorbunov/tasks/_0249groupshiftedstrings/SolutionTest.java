@@ -55,6 +55,17 @@ class SolutionTest {
 
     @Test
     void example4() {
+        String[] input = new String[]{"za", "ab"};
+
+        List<List<String>> result = solution.groupStrings(input);
+
+        Assertions.assertEquals(1, result.size());
+        result.forEach(Collections::sort);
+        Assertions.assertTrue(findList(result, Arrays.asList("za", "ab")));
+    }
+
+    @Test
+    void example5() {
         String[] input = new String[]{"aa", "bb", "aa"};
 
         List<List<String>> result = solution.groupStrings(input);
