@@ -1,6 +1,9 @@
 package ru.gorbunov.tasks._0040combinationsum2;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 40. Combination Sum II
@@ -31,21 +34,33 @@ import java.util.*;
  */
 public class Solution {
 
-    public List<List<Integer>> slowCombinationSum2(int[] candidates, int target) {
+    /**
+     * Runtime complexity O(2^N)
+     * Space complexity O(N)
+     * I did not take into account the space needed to hold the final results of combination
+     */
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         Arrays.sort(candidates);
 
-        Set<List<Integer>> result = new LinkedHashSet<>();
+        List<List<Integer>> result = new ArrayList<>();
         generate(candidates, target, result, new CurrentSumList(), 0);
 
-        return new ArrayList<>(result);
+        return result;
     }
 
-    private void generate(int[] candidates, int target, Set<List<Integer>> result, CurrentSumList current, int index) {
-        if (current.sum == target) {
-            result.add(current.getList());
+    private void generate(int[] candidates, int target, List<List<Integer>> result, CurrentSumList current, int index) {
+        if (current.sum >= target) {
+            if (current.sum == target) {
+                result.add(current.getList());
+            }
+            return;
         }
 
         for (int i = index; i < candidates.length; i++) {
+            if (i > index && candidates[i] == candidates[i - 1]){
+                continue;
+            }
+
             current.add(candidates[i]);
 
             generate(candidates, target, result, current, i + 1);

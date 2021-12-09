@@ -22,7 +22,7 @@ class SolutionTest {
         int[] candidates = {10, 1, 2, 7, 6, 1, 5};
         int target = 8;
 
-        List<List<Integer>> result = solution.slowCombinationSum2(candidates, target);
+        List<List<Integer>> result = solution.combinationSum2(candidates, target);
 
         Assertions.assertEquals(4, result.size());
         result.forEach(Collections::sort);
@@ -37,7 +37,7 @@ class SolutionTest {
         int[] candidates = {2, 5, 2, 1, 2};
         int target = 5;
 
-        List<List<Integer>> result = solution.slowCombinationSum2(candidates, target);
+        List<List<Integer>> result = solution.combinationSum2(candidates, target);
 
         Assertions.assertEquals(2, result.size());
         result.forEach(Collections::sort);
