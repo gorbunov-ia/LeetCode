@@ -2,6 +2,7 @@ package ru.gorbunov.tasks._0169majorityelement;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 169. Majority Element
@@ -23,6 +24,10 @@ import java.util.Map;
  */
 public class Solution {
 
+    /**
+     * Runtime complexity O(N)
+     * Space complexity O(N)
+     */
     public int majorityElement(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
         int target = nums.length / 2;
@@ -34,5 +39,25 @@ public class Solution {
             map.put(num, current);
         }
         throw new IllegalArgumentException("There is no number");
+    }
+
+    /**
+     * Boyer-Moore Voting Algorithm
+     * <p>
+     * Runtime complexity O(N)
+     * Space complexity O(1)
+     */
+    public int spaceMajorityElement(int[] nums) {
+        int count = 0;
+        Integer candidate = null;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            count += (num == candidate ? 1 : -1);
+        }
+        return Optional.ofNullable(candidate).orElseThrow(() -> new IllegalArgumentException("There is no number"));
     }
 }
