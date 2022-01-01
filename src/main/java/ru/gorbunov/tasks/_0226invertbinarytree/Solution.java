@@ -44,9 +44,9 @@ public class Solution {
         node.right = tmp;
     }
 
-    private void addIfNotNull(TreeNode node, Queue<TreeNode> accumulator) {
+    private void addIfNotNull(TreeNode node, Queue<TreeNode> consumer) {
         if (node != null) {
-            accumulator.add(node);
+            consumer.add(node);
         }
     }
 }
