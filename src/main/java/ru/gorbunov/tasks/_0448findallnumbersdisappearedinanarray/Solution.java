@@ -23,6 +23,10 @@ import java.util.List;
  */
 public class Solution {
 
+    /**
+     * Runtime complexity O(N*logN)
+     * Space complexity O(1)
+     */
     public List<Integer> findDisappearedNumbers(int[] nums) {
         if (nums == null || nums.length == 0) {
             return Collections.emptyList();
@@ -50,4 +54,26 @@ public class Solution {
         }
         return result;
     }
+
+    /**
+     * Runtime complexity O(N)
+     * Space complexity O(1)
+     */
+    public List<Integer> fastFindDisappearedNumbers(int[] nums) {
+        for (int num : nums) {
+            int value = nums[Math.abs(num) - 1];
+            if (value > 0) {
+                nums[Math.abs(num) - 1] *= -1;
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0) {
+                result.add(i + 1);
+            }
+        }
+        return result;
+    }
+
 }
