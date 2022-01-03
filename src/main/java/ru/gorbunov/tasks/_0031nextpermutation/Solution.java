@@ -26,15 +26,29 @@ public class Solution {
         if (nums == null || nums.length <= 1) {
             return;
         }
+        int fromIndex = permuteOne(nums);
+        int toIndex = (nums.length - fromIndex) / 2;
+        for (int i = 0; i < toIndex; i++) {
+            swap(nums, fromIndex + i, nums.length - 1 - i);
+        }
+    }
+
+    private int permuteOne(int[] nums) {
         for (int i = nums.length - 1; i > 0; i--) {
-            if (nums[i] > nums[i - 1]) {
-                swap(nums, i, i - 1);
-                return;
+            if (nums[i] > nums[i-1]) {
+                int lastIndex = i;
+                for (int j = i; j < nums.length; j++) {
+                    if (nums[i - 1] < nums[j]) {
+                        lastIndex = j;
+                    } else {
+                        break;
+                    }
+                }
+                swap(nums, i - 1, lastIndex);
+                return i;
             }
         }
-        for (int i = 0; i < nums.length / 2; i++) {
-            swap(nums, i, nums.length - 1 - i);
-        }
+        return 0;
     }
 
     private void swap(int[] nums, int i, int j) {
