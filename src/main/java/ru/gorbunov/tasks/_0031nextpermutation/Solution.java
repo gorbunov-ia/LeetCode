@@ -27,28 +27,28 @@ public class Solution {
             return;
         }
         int fromIndex = permuteOne(nums);
-        int toIndex = (nums.length - fromIndex) / 2;
-        for (int i = 0; i < toIndex; i++) {
-            swap(nums, fromIndex + i, nums.length - 1 - i);
-        }
+        reverse(nums, fromIndex);
     }
 
     private int permuteOne(int[] nums) {
         for (int i = nums.length - 1; i > 0; i--) {
             if (nums[i] > nums[i-1]) {
-                int lastIndex = i;
-                for (int j = i; j < nums.length; j++) {
-                    if (nums[i - 1] < nums[j]) {
-                        lastIndex = j;
-                    } else {
-                        break;
-                    }
+                int j = nums.length - 1;
+                while(nums[i - 1] >= nums[j]) {
+                    j--;
                 }
-                swap(nums, i - 1, lastIndex);
+                swap(nums, i - 1, j);
                 return i;
             }
         }
         return 0;
+    }
+
+    private void reverse(int[] nums, int fromIndex) {
+        int toIndex = (nums.length - fromIndex) / 2;
+        for (int i = 0; i < toIndex; i++) {
+            swap(nums, fromIndex + i, nums.length - 1 - i);
+        }
     }
 
     private void swap(int[] nums, int i, int j) {
