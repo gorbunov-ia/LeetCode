@@ -47,4 +47,52 @@ public class Solution {
     //[6,5,4,3,2,1] r1
     //[5,6,4,3,2,1] r2
     //[5,6,1,2,3,4] r3
+
+    public void gcdRotate(int[] nums, int k) {
+        if (nums.length <= 1) {
+            return;
+        }
+        //step each time to move
+        int step = k % nums.length;
+        //find GCD between nums length and step
+        int gcd = findGcd(nums.length, step);
+        int position, count;
+
+        //gcd path to finish movie
+        for (int i = 0; i < gcd; i++) {
+            //beginning position of each path
+            position = i;
+            //count is the number we need swap each path
+            count = nums.length / gcd - 1;
+            for (int j = 0; j < count; j++) {
+                position = (position + step) % nums.length;
+                //swap index value in index i and position
+                nums[i] ^= nums[position];
+                nums[position] ^= nums[i];
+                nums[i] ^= nums[position];
+            }
+        }
+    }
+
+    public int findGcd(int a, int b) {
+        return (a == 0 || b == 0) ? a + b : findGcd(b, a % b);
+    }
+
+    public void easyRotate(int[] nums, int k) {
+        if(nums.length <= 1){
+            return;
+        }
+        //step each time to move
+        int step = k % nums.length;
+        int[] tmp = new int[step];
+        for(int i = 0; i < step; i++){
+            tmp[i] = nums[nums.length - step + i];
+        }
+        for(int i = nums.length - step - 1; i >= 0; i--){
+            nums[i + step] = nums[i];
+        }
+        for(int i = 0; i < step; i++){
+            nums[i] = tmp[i];
+        }
+    }
 }
