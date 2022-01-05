@@ -24,6 +24,8 @@ import java.util.*;
  * Constraints:
  * 1 <= s.length, p.length <= 3 * 10^4
  * s and p consist of lowercase English letters.
+ *
+ * @see ru.gorbunov.tasks._0567permutationinstring.Solution
  */
 public class Solution {
 
@@ -38,23 +40,23 @@ public class Solution {
             char letter = s.charAt(i);
             Integer count = window.getOrDefault(letter, 0);
             count--;
-            addIfNotZero(window, letter, count);
+            putIfNotZero(window, letter, count);
         }
 
         if (window.isEmpty()) {
             indexes.add(0);
         }
 
-        for(int i = p.length(); i < s.length(); i++) {
+        for (int i = p.length(); i < s.length(); i++) {
             char newLetter = s.charAt(i);
             Integer newCount = window.getOrDefault(newLetter, 0);
             newCount--;
-            addIfNotZero(window, newLetter, newCount);
+            putIfNotZero(window, newLetter, newCount);
 
             char firstLetter = s.charAt(i - p.length());
             Integer firstCount = window.getOrDefault(firstLetter, 0);
             firstCount++;
-            addIfNotZero(window, firstLetter, firstCount);
+            putIfNotZero(window, firstLetter, firstCount);
 
             if (window.isEmpty()) {
                 indexes.add(i - p.length() + 1);
@@ -72,11 +74,48 @@ public class Solution {
         return map;
     }
 
-    private void addIfNotZero(Map<Character, Integer> window, Character letter, Integer count) {
+    private void putIfNotZero(Map<Character, Integer> window, Character letter, Integer count) {
         if (count != 0) {
             window.put(letter, count);
         } else {
             window.remove(letter);
         }
+    }
+
+    public List<Integer> equalFindAnagrams(String s, String p) {
+        List<Integer> result = new LinkedList<>();
+        if (p.length() > s.length()) return result;
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : p.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        int counter = map.size();
+
+        int begin = 0, end = 0;
+
+        while (end < s.length()) {
+            char c = s.charAt(end);
+            if (map.containsKey(c)) {
+                map.put(c, map.get(c) - 1);
+                if (map.get(c) == 0) counter--;
+            }
+            end++;
+
+            while (counter == 0) {
+                char tempc = s.charAt(begin);
+                if (map.containsKey(tempc)) {
+                    map.put(tempc, map.get(tempc) + 1);
+                    if (map.get(tempc) > 0) {
+                        counter++;
+                    }
+                }
+                if (end - begin == p.length()) {
+                    result.add(begin);
+                }
+                begin++;
+            }
+
+        }
+        return result;
     }
 }
