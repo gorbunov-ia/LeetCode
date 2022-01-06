@@ -24,6 +24,10 @@ package ru.gorbunov.tasks._0300longestincreasingsubsequence;
 public class Solution {
     private int maxLength = 0;
 
+    /**
+     * Runtime complexity O(N!)
+     * Space complexity O(1)
+     */
     public int lengthOfLIS(int[] nums) {
         //n! solution = brut force
         for (int i = 0; i < nums.length; i++) {
@@ -43,5 +47,46 @@ public class Solution {
             }
         }
         maxLength = Math.max(maxLength, length);
+    }
+
+    /**
+     * Runtime complexity O(N^2)
+     * Space complexity O(N)
+     */
+    public int dpLengthOfLIS(int[] nums) {
+        int[] dp = new int[nums.length];
+        int maxLength = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            dp[i] = 1;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] < nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            maxLength = Math.max(maxLength, dp[i]);
+        }
+        return maxLength;
+    }
+
+    /**
+     * Runtime complexity O(N*logN)
+     * Space complexity O(N)
+     */
+    public int fastLengthOfLIS(int[] nums) {
+        int[] tails = new int[nums.length];
+        int size = 0;
+        for (int x : nums) {
+            int i = 0, j = size;
+            while (i != j) {
+                int m = (i + j) / 2;
+                if (tails[m] < x)
+                    i = m + 1;
+                else
+                    j = m;
+            }
+            tails[i] = x;
+            if (i == size) ++size;
+        }
+        return size;
     }
 }
