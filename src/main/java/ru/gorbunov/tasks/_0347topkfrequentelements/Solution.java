@@ -1,6 +1,7 @@
 package ru.gorbunov.tasks._0347topkfrequentelements;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.function.Function;
@@ -25,10 +26,12 @@ import java.util.stream.Collectors;
  */
 public class Solution {
 
+    /**
+     * Runtime complexity O(N*logK)
+     * Space complexity O(N+K)
+     */
     public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer, Long> counts = Arrays.stream(nums)
-                .boxed()
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<Integer, Long> counts = getCounts(nums);
 
         PriorityQueue<Map.Entry<Integer, Long>> heap = new PriorityQueue<>(Map.Entry.comparingByValue());
 
@@ -42,6 +45,52 @@ public class Solution {
         return heap.stream()
                 .mapToInt(Map.Entry::getKey)
                 .toArray();
+    }
+
+    private Map<Integer, Long> getCounts(int[] nums) {
+        return Arrays.stream(nums)
+                .boxed()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    /**
+     * Runtime complexity O(N)
+     * Space complexity O(N)
+     */
+    public int[] fastTopKFrequent(int[] nums, int k) {
+        Map<Integer, Long> frequencies = getCounts(nums);
+        LinkedList<Integer>[] buckets = bucketSort(frequencies, nums.length);
+
+        int[] ans = new int[k];
+        int i = 0;
+
+        for (LinkedList<Integer> bucket : buckets) {
+            if (bucket == null) continue;
+
+            for (int num : bucket) {
+                ans[i++] = num;
+                if (i == k) return ans;
+            }
+        }
+
+        return ans;
+    }
+
+    private LinkedList<Integer>[] bucketSort(Map<Integer, Long> frequencies, int max) {
+        LinkedList<Integer>[] buckets = new LinkedList[max];
+
+        for (Map.Entry<Integer, Long> entry : frequencies.entrySet()) {
+            int num = entry.getKey();
+            int frequency = entry.getValue().intValue();
+            int index = max - frequency;
+
+            if (buckets[index] == null) {
+                buckets[index] = new LinkedList<>();
+            }
+            buckets[index].addFirst(num);
+        }
+
+        return buckets;
     }
 
 }
