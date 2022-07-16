@@ -24,24 +24,21 @@ import ru.gorbunov.tasks.structure.list.ListNode;
 public class Solution {
 
     public ListNode swapPairs(ListNode head) {
-        if (head == null) {
-            return null;
+        if (head == null || head.next == null) {
+            return head;
         }
         ListNode dummy = new ListNode(-1, head);
 
-        ListNode p0 = dummy;
-        ListNode p1 = dummy.next;
-        ListNode p2 = p1.next;
-        ListNode p3 = p2 != null ? p2.next : null;
-        while (p2 != null) {
-            p0.next = p2;
-            p1.next = p3;
-            p2.next = p1;
+        ListNode prev = dummy;
+        ListNode curr = prev.next;
+        while (curr != null && curr.next != null) {
+            ListNode nextNode = curr.next;
+            prev.next = nextNode;
+            curr.next = nextNode.next;
+            nextNode.next = curr;
 
-            p0 = p1;
-            p1 = p0.next;
-            p2 = p1 != null ? p1.next : null;
-            p3 = p2 != null ? p2.next : null;
+            prev = curr;
+            curr = curr.next;
         }
 
         return dummy.next;
